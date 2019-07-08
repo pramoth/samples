@@ -2,7 +2,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.web.*;
 
 public class HelloFX extends Application {
 
@@ -10,8 +12,13 @@ public class HelloFX extends Application {
     public void start(Stage stage) {
         String javaVersion = System.getProperty("java.version");
         String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(new StackPane(l), 640, 480);
+        WebView webView = new WebView();
+
+        webView.getEngine().load("https://angular.io/");
+
+        VBox vBox = new VBox(webView);
+        Scene scene = new Scene(vBox, 960, 600);
+
         stage.setScene(scene);
         stage.show();
     }
